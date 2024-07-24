@@ -26,6 +26,7 @@ struct ContentView: View {
                     }
                     
                 }
+                .stroke(Color.black, lineWidth: 2.0)
                 
                 Button {
                     if buttonName == .TW {
@@ -71,7 +72,7 @@ struct ContentView: View {
         let offsetY = (height - boundingBoxHeight * scale) * 0.5 - minY * scale
         
         for keypoints in jsonManager.CAcoordinates {
-            let normalizedX = keypoints.keypoints[0] * scale + offsetX
+            let normalizedX = keypoints.keypoints[0] * (scale * 0.8) + offsetX
             let normalizedY = keypoints.keypoints[1] * scale + offsetY
             points.append(
                 CGPoint(
@@ -96,16 +97,16 @@ struct ContentView: View {
         let boundingBoxHeight = maxY - minY
         
         // Determine the scaling factors
-        let scaleX = width / boundingBoxWidth
+        let scaleX = width  / boundingBoxWidth
         let scaleY = height / boundingBoxHeight
         let scale = min(scaleX, scaleY)
         
         // Apply scaling and translation
-        let offsetX = (width - boundingBoxWidth * scale) / 2.0 - minX * scale
+        let offsetX = (width - boundingBoxWidth * scale) / 1 - minX * scale
         let offsetY = (height - boundingBoxHeight * scale) / 2.0 - minY * scale
         
         for keypoints in jsonManager.TWcoordinates {
-            let normalizedX = keypoints.keypoints[0] * scale + offsetX
+            let normalizedX = keypoints.keypoints[0] * (scale * 0.8) + offsetX
             let normalizedY = keypoints.keypoints[1] * scale + offsetY
             points.append(
                 CGPoint(
